@@ -1,6 +1,5 @@
 var eventsData;
 var block;
-var task;
 
 // sets color of time block based on past, present, or future class
 function setHourColors() {
@@ -23,7 +22,7 @@ function loadStoredData() {
     block = document.getElementById('hour-' + i);
     eventsData = JSON.parse(localStorage.getItem("tasks"));
     if (!eventsData) {
-    block.textContent = " "
+    block.children[1].textContent = " "
     eventsData = {
       hour9: "",
       hour10: "",
@@ -34,9 +33,7 @@ function loadStoredData() {
       hour15: "",
       hour16: "",
       hour17: "",
-    }} else {
-      block.textContent = eventsData ["hour" + [i]];
-    };
+    }} 
   }
 };
   
