@@ -1,6 +1,11 @@
 var eventsData;
 var block;
 
+// TODO: Add code to display the current date in the header of the page.
+var currentDay = document.getElementById('currentDay')
+currentDay.textContent = dayjs().format('MMMM DD, YYYY');
+
+
 // sets color of time block based on past, present, or future class
 function setHourColors() {
     var now = dayjs();
@@ -21,6 +26,9 @@ function loadStoredData() {
   for (var i=9; i <18; i++) {
     block = document.getElementById('hour-' + i);
     eventsData = JSON.parse(localStorage.getItem("tasks"));
+    if (eventsData) {
+      block.children[1].value = eventsData["hour" + i];
+    }
     if (!eventsData) {
     block.children[1].textContent = " "
     eventsData = {
@@ -58,7 +66,4 @@ $(".saveBtn").on("click", handleSaveClick);
 $(function() {
   loadStoredData();
   setHourColors();
-  // update colors hourly as time updates
 })
-
-  // TODO: Add code to display the current date in the header of the page.
